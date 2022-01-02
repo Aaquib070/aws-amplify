@@ -1,0 +1,18 @@
+type Batsman @model {
+  id: ID!
+  name: String!
+  runs: Int!
+}
+
+input AddRunInput {
+	id: ID!
+}
+
+type Mutation {
+	addRun(input: AddRunInput!): Batsman
+}
+
+type Subscription {
+	onAddRun: Batsman
+		@aws_subscribe(mutations: ["addRun"])
+}
